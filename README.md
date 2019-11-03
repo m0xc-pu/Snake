@@ -5,4 +5,6 @@ Programado en ineficientes funciones :')
 
 ---
 
+Hecho para Python 3.
+
 Para ejecutarlo: `python game.py`
