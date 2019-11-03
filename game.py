@@ -19,10 +19,12 @@ winSizeX = 1000
 winSizeY = 600
 #tamano serpiente
 tam_serp = 25
+#nombre de la ventana
+titulo_ventana = "Snake!    Ver 2.1    By: moxwel"
 
 #propiedades ventana
 pantalla = pygame.display.set_mode((winSizeX,winSizeY))
-pygame.display.set_caption("Snake!    Ver 2.0    By: moxwel")
+pygame.display.set_caption(titulo_ventana)
 icono_juego = pygame.image.load("snake_icon.gif")
 pygame.display.set_icon(icono_juego)
 reloj = pygame.time.Clock()
@@ -66,7 +68,7 @@ def intro_juego():
     intro_state = True
     pantalla.blit(pause_image,(0,0))
 
-    render_text("Snake!    Ver 2.0    By: moxwel",negro,20,3,1,)
+    render_text(titulo_ventana,negro,20,3,1,)
     render_text("El objetivo principal del juego es",blanco,30,50,220,2,negro)
     render_text("lograr que la serpiente se coma",blanco,30,50,250,2,negro)
     render_text("todas las manzanas posibles.",blanco,30,50,280,2,negro)
@@ -171,7 +173,7 @@ def main_game():
     #variables de estado del juego
     gameOver = False
     pauseGame = False
-    fps = 10
+    fps = 13
 
     #reproducir musica
     musica.play(-1)
@@ -242,17 +244,16 @@ def main_game():
             if evento.type == pygame.QUIT:
                 print("[Evento/Juego] Ventana cerrada. Cerrando...")
                 sys.exit()
-
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_LEFT and mov_ant != 6:
                     cambioX,cambioY = -tam_serp,0
                     mov_ant = 4
-                elif evento.key == pygame.K_RIGHT and mov_ant != 4:
-                    cambioX,cambioY = tam_serp,0
-                    mov_ant = 6
                 elif evento.key == pygame.K_UP and mov_ant != 2:
                     cambioX,cambioY = 0,-tam_serp
                     mov_ant = 8
+                elif evento.key == pygame.K_RIGHT and mov_ant != 4:
+                    cambioX,cambioY = tam_serp,0
+                    mov_ant = 6
                 elif evento.key == pygame.K_DOWN and mov_ant != 8:
                     cambioX,cambioY = 0,tam_serp
                     mov_ant = 2
@@ -284,7 +285,7 @@ def main_game():
 
         #mostrar los puntos y velocidad
         render_text("Puntos: " + str(points),blanco,40,10,0,2,negro)
-        render_text("Rapidez: " + str(fps-9),blanco,40,200,0,2,negro)
+        render_text("Rapidez: " + str(fps-12),blanco,40,200,0,2,negro)
 
         #cuando recien comience el juego, pedir que se toque alguna tecla
         if mov_ant == 0:
@@ -298,12 +299,12 @@ def main_game():
             appleY = random.randrange(0, winSizeY-tam_serp+1, tam_serp)
             largo_serp += 1
             points += 1
-            render_text("Puntos: " + str(points),verde,40,10,0,2,negro)
+            render_text("Puntos: " + str(points),rojo,40,10,0,2,negro)
             #Cada vez que se consigan 3 puntos, la velocidad va a ir aumentando
             if points > 0:
                 if points % 3 == 0:
                     fps += 1
-                    render_text("Rapidez: " + str(fps-9),verde,40,200,0,2,negro)
+                    render_text("Rapidez: " + str(fps-12),rojo,40,200,0,2,negro)
 
         #si la serpiente toca la manzana VERDE, generar una nueva manzana aleatoria y aumentar velocidad
         if (posX,posY) == (apple2X,apple2Y):
@@ -312,7 +313,9 @@ def main_game():
             apple2X = random.randrange(0, winSizeX-tam_serp+1, tam_serp)
             apple2Y = random.randrange(0, winSizeY-tam_serp+1, tam_serp)
             fps += 1
-            render_text("Rapidez: " + str(fps-9),verde,40,200,0,2,negro)
+            points += 2
+            render_text("Puntos: " + str(points),verde,40,10,0,2,negro)
+            render_text("Rapidez: " + str(fps-12),verde,40,200,0,2,negro)
 
         #si la serpiente toca la manzana MORADA, generar una nueva manzana aleatoria y aumentar largo de serpiente
         if (posX,posY) == (apple3X,apple3Y):
@@ -321,6 +324,8 @@ def main_game():
             apple3X = random.randrange(0, winSizeX-tam_serp+1, tam_serp)
             apple3Y = random.randrange(0, winSizeY-tam_serp+1, tam_serp)
             largo_serp += 10
+            points += 10
+            render_text("Puntos: " + str(points),morado,40,10,0,2,negro)
 
         #si la serpiente se choca a si misma, pierde el juego
         if largo_serp > 1:
