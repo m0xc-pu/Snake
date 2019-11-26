@@ -25,13 +25,13 @@ titulo_ventana = "Snake!    Ver 2.2    By: moxwel"
 # propiedades ventana
 pantalla = pygame.display.set_mode((winSizeX,winSizeY))
 pygame.display.set_caption(titulo_ventana)
-icono_juego = pygame.image.load("resources\\img\\snake_icon.gif")
+icono_juego = pygame.image.load("resources/img/snake_icon.gif")
 pygame.display.set_icon(icono_juego)
 reloj = pygame.time.Clock()
 
 # funcion para renderizar texto con bordes (predeterminado = sin bordes)
 def render_text(texto, color, tam, x=0, y=0, grosor=0, color_grosor=(255,255,255)):
-    fuente = pygame.font.Font("resources\\determination.ttf",tam)
+    fuente = pygame.font.Font("resources/determination.ttf",tam)
     texto_out = fuente.render(texto, True, color_grosor, None)
     texto = fuente.render(texto, True, color, None)
     pantalla.blit(texto_out,(x+grosor,y+grosor))
@@ -48,16 +48,16 @@ render_text("Cargando . . .",blanco,40,20,10)
 pygame.display.update()
 
 # imagenes y sonidos (cargar antes del main_game para optimizar cargas)
-go_image = pygame.transform.scale(pygame.image.load("resources\\img\\game_over.png"),(winSizeX,winSizeY))
-pause_image = pygame.transform.scale(pygame.image.load("resources\\img\\pause.png"),(winSizeX,winSizeY))
-musica = pygame.mixer.Sound("resources\\music\\music.ogg")
-comer = pygame.mixer.Sound("resources\\music\\apple.ogg")
-comer2 = pygame.mixer.Sound("resources\\music\\apple2.ogg")
-comer3 = pygame.mixer.Sound("resources\\music\\apple3.ogg")
-crash = pygame.mixer.Sound("resources\\music\\crash.ogg")
-crash2 = pygame.mixer.Sound("resources\\music\\crash2.ogg")
-keys = pygame.image.load("resources\\img\\keys.png")
-gameover_music = pygame.mixer.Sound("resources\\music\\gameover.ogg")
+go_image = pygame.transform.scale(pygame.image.load("resources/img/game_over.png"),(winSizeX,winSizeY))
+pause_image = pygame.transform.scale(pygame.image.load("resources/img/pause.png"),(winSizeX,winSizeY))
+musica = pygame.mixer.Sound("resources/music/music.ogg")
+comer = pygame.mixer.Sound("resources/music/apple.ogg")
+comer2 = pygame.mixer.Sound("resources/music/apple2.ogg")
+comer3 = pygame.mixer.Sound("resources/music/apple3.ogg")
+crash = pygame.mixer.Sound("resources/music/crash.ogg")
+crash2 = pygame.mixer.Sound("resources/music/crash2.ogg")
+keys = pygame.image.load("resources/img/keys.png")
+gameover_music = pygame.mixer.Sound("resources/music/gameover.ogg")
 
 # pantalla de inicio del juego
 def intro_juego():
@@ -140,13 +140,13 @@ def main_game():
     num_fondo = random.randint(1,4)
     print("[Fondo] Usando fondo " + str(num_fondo))
     if num_fondo == 1:
-        bg_image = pygame.transform.scale(pygame.image.load("resources\\img\\fondo.png"),(winSizeX,winSizeY))
+        bg_image = pygame.transform.scale(pygame.image.load("resources/img/fondo.png"),(winSizeX,winSizeY))
     elif num_fondo == 2:
-        bg_image = pygame.transform.scale(pygame.image.load("resources\\img\\fondo2.png"),(winSizeX,winSizeY))
+        bg_image = pygame.transform.scale(pygame.image.load("resources/img/fondo2.png"),(winSizeX,winSizeY))
     elif num_fondo == 3:
-        bg_image = pygame.transform.scale(pygame.image.load("resources\\img\\fondo3.png"),(winSizeX,winSizeY))
+        bg_image = pygame.transform.scale(pygame.image.load("resources/img/fondo3.png"),(winSizeX,winSizeY))
     elif num_fondo == 4:
-        bg_image = pygame.transform.scale(pygame.image.load("resources\\img\\fondo4.png"),(winSizeX,winSizeY))
+        bg_image = pygame.transform.scale(pygame.image.load("resources/img/fondo4.png"),(winSizeX,winSizeY))
 
     # posicion inicial serpiente (aleatoria)
     posX = random.randrange(0, winSizeX-tam_serp+1, tam_serp)
